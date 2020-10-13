@@ -1,0 +1,26 @@
+type Store @model {
+	id: ID!
+	name: String!
+	type: String!
+	repo: String!
+	author: String!
+	maintainer: String!
+	returnType: String!
+	description: String!
+	params: [String]!
+	deployedServer: [String]!
+	status: StatusEnum!
+	comments: [Comment] @connection(name: "Comments")
+}
+type Comment @model {
+	id: ID!
+	name: String!
+	content: String!
+	post: Store @connection(name: "Comments")
+}
+enum StatusEnum {
+	RUNNING
+	ISSUE
+	DEVELOPING
+	FUTURE
+}
